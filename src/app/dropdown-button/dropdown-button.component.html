@@ -1,0 +1,10 @@
+<button mat-button [matMenuTriggerFor]="menu" class="drop-down-button">
+  {{ buttonText }}
+</button>
+<mat-menu #menu="matMenu">
+  <li *ngFor="let option of options; index as i; first as isFirst">
+    <button mat-menu-item (click)="selectOption(option.toString())">
+      {{ option }}
+    </button>
+  </li>
+</mat-menu>

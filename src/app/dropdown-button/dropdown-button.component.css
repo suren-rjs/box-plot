@@ -1,0 +1,10 @@
+mat-Menu {
+  right: inherit;
+}
+
+.drop-down-button {
+  padding: 5px 15px;
+  font-size: 14px;
+  margin: 5px 10px;
+  position: sticky;
+}

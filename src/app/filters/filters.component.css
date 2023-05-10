@@ -1,0 +1,19 @@
+.filter-component {
+  margin: 20px;
+  padding: 10px;
+}
+
+h2 {
+  margin: 5px;
+  height: fit-content;
+  text-decoration: underline;
+}
+
+h4 {
+  margin: 1px 10px;
+}
+
+.button-group {
+  height: fit-content;
+  display: block;
+}

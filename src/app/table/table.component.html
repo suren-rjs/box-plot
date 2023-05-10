@@ -1,0 +1,34 @@
+<div class="parent-container">
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th class="table-header">MANUFACTURER NAME</th>
+          <th class="table-header">MODEL NAME</th>
+          <th class="table-header">CUR ODOM READ</th>
+          <th class="table-header">VEHICLE YEAR</th>
+          <th class="table-header">LOCATION NAME</th>
+          <th class="table-header">MAX SALE VALUE</th>
+          <th class="table-header">DAYS IN STOCK</th>
+          <th class="table-header">STATUS</th>
+          <th class="table-header">REG NO</th>
+          <th class="table-header">SERIES</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of vehicleDataList; index as i; first as isFirst">
+          <td>{{ data.manufactureName }}</td>
+          <td>{{ data.modelName }}</td>
+          <td>{{ data.odoRead }}</td>
+          <td>{{ data.vehicleYear }}</td>
+          <td>{{ data.location }}</td>
+          <td>{{ data.saleValue }}</td>
+          <td>{{ data.daysInStock }}</td>
+          <td>{{ data.status }}</td>
+          <td>{{ data.regNumber }}</td>
+          <td>{{ data.series }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
