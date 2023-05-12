@@ -96,8 +96,8 @@
     <h2>Selling and Procurement</h2>
   </div>
   <div class="row-container">
-    <app-table></app-table>
-    <app-filters></app-filters>
+    <app-table [vehicleDataList]="vehicleData"></app-table>
+    <app-filters (triggerUpdate)="handleCustomEvent($event)"></app-filters>
   </div>
   <app-box-plot></app-box-plot>
 </div>

@@ -17,16 +17,16 @@
       </thead>
       <tbody>
         <tr *ngFor="let data of vehicleDataList; index as i; first as isFirst">
-          <td>{{ data.manufactureName }}</td>
-          <td>{{ data.modelName }}</td>
-          <td>{{ data.odoRead }}</td>
-          <td>{{ data.vehicleYear }}</td>
-          <td>{{ data.location }}</td>
-          <td>{{ data.saleValue }}</td>
-          <td>{{ data.daysInStock }}</td>
-          <td>{{ data.status }}</td>
-          <td>{{ data.regNumber }}</td>
-          <td>{{ data.series }}</td>
+          <td>{{ data.MANUFACTURER_NAME }}</td>
+          <td>{{ data.MODELNAME }}</td>
+          <td>{{ data.CUR_ODOM_READ }}</td>
+          <td>{{ data.VEHICLEYEAR }}</td>
+          <td>{{ data.LOCATIONNAME }}</td>
+          <td>{{ data.MAX_SALE_VALUE }}</td>
+          <td>{{ data.DAYSINSTOCK }}</td>
+          <td>{{ data.STATUS }}</td>
+          <td>{{ data.REG_NO }}</td>
+          <td>{{ data.SERIES }}</td>
         </tr>
       </tbody>
     </table>

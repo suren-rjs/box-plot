@@ -1,6 +1,7 @@
 .filter-component {
-  margin: 20px;
-  padding: 10px;
+  margin: 0px;
+  padding: 0px;
+  width: 250px;
 }
 
 h2 {

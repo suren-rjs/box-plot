@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { SharedData } from 'src/model/sharedData';
 
 @Component({
   selector: 'app-dropdown-button',
@@ -6,22 +7,31 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./dropdown-button.component.css'],
 })
 export class DropdownButtonComponent implements OnInit {
+  sharedData = SharedData.getInstance();
+
   ngOnInit(): void {
-    this.options = ['Select All', ...this.options];
+    if (this.options) this.options = ['Select All', ...this.options];
   }
 
   @Input()
-  options!: Array<String>;
+  options: any = [];
 
   @Input()
-  method!: () => void;
+  method!: (params: any) => void;
 
   buttonText: string = 'Select All';
   name: any;
 
+  @Input() isPrice: Boolean = true;
+  @Output() triggerUpdate = new EventEmitter<any>();
+
   selectOption(option: string) {
     this.buttonText = option;
-    this.method();
-    console.log('Selected Option:', option);
+    if (this.isPrice) {
+      this.sharedData.price = option;
+    } else {
+      this.sharedData.year = option;
+    }
+    this.triggerUpdate.emit('update');
   }
 }

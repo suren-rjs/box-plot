@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TableComponent } from './table/table.component';
@@ -11,6 +10,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import { FormsModule } from '@angular/forms';
 import { BoxPlotComponent } from './box-plot/box-plot.component';
 import Chart from 'chart.js/auto';
+import { HttpClientModule } from '@angular/common/http';
+import { DataService } from 'src/model/data-service';
 
 @NgModule({
   declarations: [
@@ -26,8 +27,9 @@ import Chart from 'chart.js/auto';
     BrowserAnimationsModule,
     MatMenuModule,
     FormsModule,
+    HttpClientModule,
   ],
-  providers: [],
+  providers: [DataService],
   bootstrap: [AppComponent, Chart],
 })
 export class AppModule {}
