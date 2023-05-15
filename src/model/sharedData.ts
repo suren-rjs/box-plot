@@ -2,6 +2,7 @@ export class SharedData {
   private static instance: SharedData;
   price = '';
   year = '';
+  odoReading = '';
   private constructor() {}
 
   public static getInstance(): SharedData {

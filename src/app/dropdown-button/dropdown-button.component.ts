@@ -22,15 +22,17 @@ export class DropdownButtonComponent implements OnInit {
   buttonText: string = 'Select All';
   name: any;
 
-  @Input() isPrice: Boolean = true;
+  @Input() type: String = 'price';
   @Output() triggerUpdate = new EventEmitter<any>();
 
   selectOption(option: string) {
     this.buttonText = option;
-    if (this.isPrice) {
+    if (this.type == 'price') {
       this.sharedData.price = option;
-    } else {
+    } else if (this.type == 'year') {
       this.sharedData.year = option;
+    } else {
+      this.sharedData.odoReading = option;
     }
     this.triggerUpdate.emit('update');
   }

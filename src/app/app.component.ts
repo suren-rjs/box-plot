@@ -11,11 +11,7 @@ import { VehicleData } from 'src/model/VehicleData';
 })
 export class AppComponent implements OnInit {
   title = 'pricing-dashboard';
-
-  updateGraph: () => void = function () {
-    console.log('update =============================== >>> ');
-  };
-
+  
   sharedData = SharedData.getInstance();
   handleCustomEvent(data: any) {
     this.vehicleData = [];

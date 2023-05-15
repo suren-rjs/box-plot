@@ -5,6 +5,7 @@ export interface Filters {
 export interface Data {
   priceList: number[];
   yearList: number[];
+  odoReadingList: number[];
 }
 
 // Converts JSON strings to/from your types

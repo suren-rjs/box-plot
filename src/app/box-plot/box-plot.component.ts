@@ -9,6 +9,7 @@ import { VehicleData } from 'src/model/VehicleData';
   styleUrls: ['./box-plot.component.css'],
 })
 export class BoxPlotComponent implements OnInit {
+  isPriceValue: Boolean = true;
   constructor(private vehicleDataService: DataService) {}
   @Output() triggerUpdate = new EventEmitter<any>();
   @Input()
@@ -23,6 +24,13 @@ export class BoxPlotComponent implements OnInit {
     this.triggerUpdate.emit('update');
   }
 
+  togglePlot(value: string) {
+    console.log(`Updated Plot : ${value}`);
+
+    this.isPriceValue = value == 'price';
+    this.updateGraph();
+  }
+
   async updateGraph() {
     const canvas = document.getElementById(
       'boxPlotCanvas'
@@ -31,19 +39,18 @@ export class BoxPlotComponent implements OnInit {
       const ctx = canvas.getContext('2d');
 
       if (ctx) {
-        const boxPlotData = await this.vehicleDataService.getGraphData();
+        const boxPlotData = await this.vehicleDataService.getGraphData(
+          this.isPriceValue ? 'price' : 'odoReading'
+        );
 
         const datasetColor = `rgba(0, 123, 255, 0.7)`;
+        const data: number[] = [];
+
+        boxPlotData.forEach((plot) => data.push(plot.datasets[0].max));
         const chartDatasets = [
           {
-            label: 'Box Plot Data',
-            data: boxPlotData[0].datasets.flatMap((dataset) => [
-              dataset.quartile1,
-              dataset.median,
-              dataset.quartile3,
-              dataset.min,
-              dataset.max,
-            ]),
+            label: boxPlotData[0].datasets[0].label,
+            data: data,
             backgroundColor: datasetColor,
             borderColor: datasetColor,
             borderWidth: 1,

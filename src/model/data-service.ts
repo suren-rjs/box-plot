@@ -16,8 +16,12 @@ export class DataService {
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
     const price = this.sharedData.price;
     const year = this.sharedData.year;
+    const odoReading = this.sharedData.odoReading;
 
-    const params = new HttpParams().set('year', year).set('saleValue', price);
+    const params = new HttpParams()
+      .set('year', year)
+      .set('saleValue', price)
+      .set('odoReading', odoReading);
 
     return this.http
       .get('http://localhost:3001/data', { headers, params })
@@ -34,12 +38,17 @@ export class DataService {
       });
   }
 
-  async getGraphData(): Promise<Array<Graph>> {
+  async getGraphData(value: string): Promise<Array<Graph>> {
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
     const price = this.sharedData.price;
     const year = this.sharedData.year;
+    const odoReading = this.sharedData.odoReading;
 
-    const params = new HttpParams().set('year', year).set('saleValue', price);
+    const params = new HttpParams()
+      .set('type', value)
+      .set('year', year)
+      .set('saleValue', price)
+      .set('odoReading', odoReading);
 
     return this.http
       .get('http://localhost:3001/graph-data', { headers, params })

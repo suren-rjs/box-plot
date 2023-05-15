@@ -2,5 +2,16 @@
   <app-table [vehicleDataList]="vehicleData"></app-table>
   <app-filters (triggerUpdate)="updateTriggered($event)"></app-filters>
 </div>
+<div class="container">
+  <mat-button-toggle-group
+    name="plot-type"
+    aria-label="Plot Type"
+    value="price"
+    (change)="togglePlot($event.value)"
+  >
+    <mat-button-toggle value="price">Price</mat-button-toggle>
+    <mat-button-toggle value="odoReading">ODO Reading</mat-button-toggle>
+  </mat-button-toggle-group>
+</div>
 
 <canvas id="boxPlotCanvas"></canvas>

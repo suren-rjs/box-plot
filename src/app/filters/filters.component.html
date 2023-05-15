@@ -3,7 +3,7 @@
     <h4>Price</h4>
     <app-dropdown-button
       [options]="priceList"
-      [isPrice]="true"
+      [type]="'price'"
       (triggerUpdate)="getUpdate($event)"
     ></app-dropdown-button>
   </div>
@@ -11,14 +11,15 @@
     <h4>Year</h4>
     <app-dropdown-button
       [options]="yearList"
-      [isPrice]="false"
+      [type]="'year'"
       (triggerUpdate)="getUpdate($event)"
     ></app-dropdown-button>
   </div>
   <div class="button-group">
     <h4>Odo Reading</h4>
     <app-dropdown-button
-      [options]="priceList"
+      [options]="odoReadingList"
+      [type]="'odoReading'"
       (triggerUpdate)="getUpdate($event)"
     ></app-dropdown-button>
   </div>

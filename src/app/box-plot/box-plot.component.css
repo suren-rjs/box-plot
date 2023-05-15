@@ -3,3 +3,10 @@
   flex: auto;
   min-height: 500px;
 }
+
+.container {
+  width: 150px;
+  height: 46px;
+  margin: 0 auto;
+  padding: 10px;
+}

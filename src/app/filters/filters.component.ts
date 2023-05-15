@@ -15,6 +15,7 @@ export class FiltersComponent implements OnInit {
   sharedData = SharedData.getInstance();
   yearList: any = [];
   priceList: any = [];
+  odoReadingList: any = [];
   filters: Filters | undefined;
   @Output() triggerUpdate = new EventEmitter<any>();
 
@@ -32,6 +33,10 @@ export class FiltersComponent implements OnInit {
         this.filters = ConvertFilters.toObject(JSON.stringify(response));
         this.yearList = ['Select All', ...this.filters.data.priceList];
         this.priceList = ['Select All', ...this.filters.data.yearList];
+        this.odoReadingList = [
+          'Select All',
+          ...this.filters.data.odoReadingList,
+        ];
       },
       (error) => {
         console.error(error);

@@ -12,6 +12,7 @@ import { BoxPlotComponent } from './box-plot/box-plot.component';
 import Chart from 'chart.js/auto';
 import { HttpClientModule } from '@angular/common/http';
 import { DataService } from 'src/model/data-service';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { DataService } from 'src/model/data-service';
     AppRoutingModule,
     BrowserAnimationsModule,
     MatMenuModule,
+    MatButtonToggleModule,
     FormsModule,
     HttpClientModule,
   ],
