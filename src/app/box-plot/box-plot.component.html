@@ -1,1 +1,6 @@
+<div class="row-container">
+  <app-table [vehicleDataList]="vehicleData"></app-table>
+  <app-filters (triggerUpdate)="updateTriggered($event)"></app-filters>
+</div>
+
 <canvas id="boxPlotCanvas"></canvas>

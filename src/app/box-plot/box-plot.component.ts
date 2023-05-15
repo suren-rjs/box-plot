@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import Chart from 'chart.js/auto';
+import { DataService } from 'src/model/data-service';
+import { VehicleData } from 'src/model/VehicleData';
 
 @Component({
   selector: 'app-box-plot',
@@ -7,7 +9,21 @@ import Chart from 'chart.js/auto';
   styleUrls: ['./box-plot.component.css'],
 })
 export class BoxPlotComponent implements OnInit {
+  constructor(private vehicleDataService: DataService) {}
+  @Output() triggerUpdate = new EventEmitter<any>();
+  @Input()
+  vehicleData: Array<VehicleData> = [];
+
   ngOnInit(): void {
+    this.updateGraph();
+  }
+
+  updateTriggered(data: any) {
+    this.updateGraph();
+    this.triggerUpdate.emit('update');
+  }
+
+  async updateGraph() {
     const canvas = document.getElementById(
       'boxPlotCanvas'
     ) as HTMLCanvasElement | null;
@@ -15,56 +31,13 @@ export class BoxPlotComponent implements OnInit {
       const ctx = canvas.getContext('2d');
 
       if (ctx) {
-        const boxPlotData = [
-          {
-            label: 'Jupiter',
-            datasets: [
-              {
-                label: 'Price',
-                min: 10,
-                max: 40,
-                median: 25,
-                quartile1: 15,
-                quartile3: 35,
-              },
-              {
-                label: 'Odo Reading',
-                min: 20,
-                max: 60,
-                median: 40,
-                quartile1: 30,
-                quartile3: 50,
-              },
-            ],
-          },
-          {
-            label: 'Jupiter 1',
-            datasets: [
-              {
-                label: 'Price',
-                min: 30,
-                max: 50,
-                median: 40,
-                quartile1: 35,
-                quartile3: 45,
-              },
-              {
-                label: 'Odo Reading',
-                min: 25,
-                max: 60,
-                median: 45,
-                quartile1: 30,
-                quartile3: 50,
-              },
-            ],
-          },
-        ];
+        const boxPlotData = await this.vehicleDataService.getGraphData();
 
-        const chartDatasets = boxPlotData.map((box) => {
-          const datasetColor = `rgba(0, 123, 255, 0.7)`;
-          return {
-            label: box.label,
-            data: box.datasets.flatMap((dataset) => [
+        const datasetColor = `rgba(0, 123, 255, 0.7)`;
+        const chartDatasets = [
+          {
+            label: 'Box Plot Data',
+            data: boxPlotData[0].datasets.flatMap((dataset) => [
               dataset.quartile1,
               dataset.median,
               dataset.quartile3,
@@ -74,8 +47,14 @@ export class BoxPlotComponent implements OnInit {
             backgroundColor: datasetColor,
             borderColor: datasetColor,
             borderWidth: 1,
-          };
-        });
+          },
+        ];
+
+        // Destroy existing Chart instance, if any
+        const existingChart = Chart.getChart(canvas);
+        if (existingChart) {
+          existingChart.destroy();
+        }
 
         new Chart(ctx, {
           type: 'bar',
